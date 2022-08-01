@@ -2761,6 +2761,18 @@ class ZipFileSystem extends FileSystem {
             this.comment   = e.comment;
             this.posixPerms = e.posixPerms;
             this.type      = type;
+
+            System.out.println("Entry(Entry e, int type) {")
+            System.out.println("isdir: " + e.isdir);
+            System.out.println("version: " + e.version);
+            System.out.println("extra length: " + extra.length);
+
+            if(extra.length >= 1)
+                System.out.print("[")
+            for(int i = 0; i < extra.length - 1; i++)
+                System.out.print(extra[i] + ", ");
+            if(extra.length >= 1)
+                System.out.println(extra[extra.length - 1] + "]")
         }
 
         Entry(ZipFileSystem zipfs, IndexNode inode) throws IOException {
