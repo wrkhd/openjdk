@@ -2715,6 +2715,17 @@ class ZipFileSystem extends FileSystem {
             this.size   = 0;
             this.csize  = 0;
             this.method = method;
+
+            System.out.println("Entry(byte[] name, boolean isdir, int method) + this.extra = ");
+            if(extra != null) {
+                if (extra.length >= 1)
+                    System.out.print("[");
+                for (int i = 0; i < extra.length - 1; i++)
+                    System.out.print(extra[i] + ", ");
+                if (extra.length >= 1)
+                    System.out.println(extra[extra.length - 1] + "]");
+            } else System.out.println("extra is empty");
+            System.out.println("entry end");
         }
 
         @SuppressWarnings("unchecked")
@@ -2727,16 +2738,49 @@ class ZipFileSystem extends FileSystem {
                     posixPerms = ZipUtils.permsToFlags((Set<PosixFilePermission>)attr.value());
                 }
             }
+
+            System.out.println("Entry(byte[] name, int type, boolean isdir, int method, FileAttribute<?>... attrs) + this.extra = ");
+            if(extra != null) {
+                if (extra.length >= 1)
+                    System.out.print("[");
+                for (int i = 0; i < extra.length - 1; i++)
+                    System.out.print(extra[i] + ", ");
+                if (extra.length >= 1)
+                    System.out.println(extra[extra.length - 1] + "]");
+            } else System.out.println("extra is null");
+            System.out.println("entry end");
         }
 
         Entry(byte[] name, Path file, int type, FileAttribute<?>... attrs) {
             this(name, type, false, METHOD_STORED, attrs);
             this.file = file;
+
+            System.out.println("Entry(byte[] name, Path file, int type, FileAttribute<?>... attrs) + this.extra = ");
+            if(extra != null) {
+                if (extra.length >= 1)
+                    System.out.print("[");
+                for (int i = 0; i < extra.length - 1; i++)
+                    System.out.print(extra[i] + ", ");
+                if (extra.length >= 1)
+                    System.out.println(extra[extra.length - 1] + "]");
+            } else System.out.println("extra is empty");
+            System.out.println("entry end");
         }
 
         Entry(Entry e, int type, int compressionMethod) {
             this(e, type);
             this.method = compressionMethod;
+
+            System.out.println("Entry(Entry e, int type, int compressionMethod) + this.extra = ");
+            if(extra != null) {
+                if (extra.length >= 1)
+                    System.out.print("[");
+                for (int i = 0; i < extra.length - 1; i++)
+                    System.out.print(extra[i] + ", ");
+                if (extra.length >= 1)
+                    System.out.println(extra[extra.length - 1] + "]");
+            } else System.out.println("extra is null");
+            System.out.println("entry end");
         }
 
         Entry(Entry e, int type) {
@@ -2762,21 +2806,34 @@ class ZipFileSystem extends FileSystem {
             this.posixPerms = e.posixPerms;
             this.type      = type;
 
-            System.out.println("Entry(Entry e, int type) {")
+            System.out.println("Entry(Entry e, int type) {");
             System.out.println("isdir: " + e.isdir);
             System.out.println("version: " + e.version);
             System.out.println("extra length: " + extra.length);
-
-            if(extra.length >= 1)
-                System.out.print("[")
-            for(int i = 0; i < extra.length - 1; i++)
-                System.out.print(extra[i] + ", ");
-            if(extra.length >= 1)
-                System.out.println(extra[extra.length - 1] + "]")
+            if(extra != null) {
+                if (extra.length >= 1)
+                    System.out.print("[");
+                for (int i = 0; i < extra.length - 1; i++)
+                    System.out.print(extra[i] + ", ");
+                if (extra.length >= 1)
+                    System.out.println(extra[extra.length - 1] + "]");
+            } else System.out.println("extra is null");
+            System.out.println("entry end }");
         }
 
         Entry(ZipFileSystem zipfs, IndexNode inode) throws IOException {
             readCEN(zipfs, inode);
+
+            System.out.println("Entry(ZipFileSystem zipfs, IndexNode inode) + this.extra = ");
+            if(extra != null) {
+                if (extra.length >= 1)
+                    System.out.print("[");
+                for (int i = 0; i < extra.length - 1; i++)
+                    System.out.print(extra[i] + ", ");
+                if (extra.length >= 1)
+                    System.out.println(extra[extra.length - 1] + "]");
+            } else System.out.println("extra is null");
+            System.out.println("entry end");
         }
 
         // Calculates a suitable base for the version number to
